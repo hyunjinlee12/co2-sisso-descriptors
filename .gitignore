@@ -18,6 +18,8 @@ sisso/**/models/
 sisso/**/desc_dat/
 sisso/**/residual/
 sisso/**/predict_Y.out
+# sisso++ run artefacts
+stripped_*
 
 # Figures regenerated from scripts
 results/figures/*

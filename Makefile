@@ -1,15 +1,19 @@
-.PHONY: help setup lint clean
+.PHONY: help check lint clean
 
 help:
 	@echo "Available targets:"
-	@echo "  setup   Create/update conda env (run 'pre-commit install' after activate)"
+	@echo "  check   Verify SISSO++ binary and Python module are reachable"
 	@echo "  lint    Run pre-commit on all tracked files"
 	@echo "  clean   Remove Python caches and notebook checkpoints"
-
-setup:
-	conda env create -f environment.yml || conda env update -f environment.yml
 	@echo ""
-	@echo "Next: conda activate co2-sisso && pre-commit install"
+	@echo "Activate the environment first:"
+	@echo "  source scripts/activate_sisso.sh"
+
+check:
+	@command -v sisso++ >/dev/null \
+		&& echo "sisso++ binary OK: $$(command -v sisso++)" \
+		|| echo "sisso++ NOT FOUND — did you run 'source scripts/activate_sisso.sh'?"
+	@python -c "import sissopp; print('sissopp module OK:', sissopp.__file__)" 2>&1
 
 lint:
 	pre-commit run --all-files

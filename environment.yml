@@ -1,14 +1,19 @@
-name: co2-sisso
+# Reproducibility spec for sissopp_env (already installed on this server).
+# Note: the `sissopp` Python module itself comes from the SISSO++ build,
+# NOT from conda. See https://sissopp_developers.gitlab.io/sissopp/ for
+# the build procedure.
+name: sissopp_env
 channels:
   - conda-forge
 dependencies:
-  - python=3.11
+  - python=3.9
   - numpy
   - pandas
   - scipy
   - scikit-learn
-  - matplotlib
   - seaborn
+  - toml
+  - matplotlib
   - jupyter
   - openpyxl
   - pyyaml
