@@ -1,0 +1,28 @@
+# MT-SISSO task definition for RWGS (proposal §6).
+
+reaction: RWGS
+
+targets:
+  primary:
+    - log_STY_CO
+    - S_CO_pct
+  auxiliary:
+    - X_CO2_pct
+    - retention_50cycle_pct
+
+tasks:
+  - id: T_500_600_dry
+    filter: {task_T_bin: T_500_600, task_humidity: dry}
+  - id: T_600_700_dry
+    filter: {task_T_bin: T_600_700, task_humidity: dry}
+  - id: T_500_600_wet
+    filter: {task_T_bin: T_500_600, task_humidity: wet}
+  - id: T_600_700_wet
+    filter: {task_T_bin: T_600_700, task_humidity: wet}
+
+sisso:
+  desc_dim: 2
+  feat_complexity: 2
+  n_top: 100
+  feat_operations: ["+", "-", "*", "/", "^2", "exp", "log"]
+  fix_intercept: false

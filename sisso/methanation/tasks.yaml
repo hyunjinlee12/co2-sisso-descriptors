@@ -1,0 +1,40 @@
+# MT-SISSO task definition for CO2 methanation (proposal §6).
+#
+# Tasks are defined as combinations of (temperature bin, humidity).
+# Each row in data/processed/db.csv that satisfies a task's filter
+# becomes a training point for that task.
+#
+# Start the run with low complexity (Q=1-2, D=1-2). Increase to Q=2-3, D=2-3
+# once >=100 rows are available across tasks.
+
+reaction: methanation
+
+targets:
+  primary:
+    - log_STY_CH4
+    - S_CH4_pct
+  auxiliary:
+    - X_CO2_pct
+    - retention_50cycle_pct
+    - wet_dry_ratio
+
+tasks:
+  - id: T_200_250_dry
+    filter: {task_T_bin: T_200_250, task_humidity: dry}
+  - id: T_250_300_dry
+    filter: {task_T_bin: T_250_300, task_humidity: dry}
+  - id: T_300_350_dry
+    filter: {task_T_bin: T_300_350, task_humidity: dry}
+  - id: T_200_250_wet
+    filter: {task_T_bin: T_200_250, task_humidity: wet}
+  - id: T_250_300_wet
+    filter: {task_T_bin: T_250_300, task_humidity: wet}
+  - id: T_300_350_wet
+    filter: {task_T_bin: T_300_350, task_humidity: wet}
+
+sisso:
+  desc_dim: 2          # D: number of descriptors in final model
+  feat_complexity: 2   # Q: rung in feature construction
+  n_top: 100           # candidate features kept per dim
+  feat_operations: ["+", "-", "*", "/", "^2", "exp", "log"]
+  fix_intercept: false
