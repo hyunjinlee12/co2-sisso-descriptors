@@ -57,8 +57,12 @@ Files:
 
 ## Workflow
 
-1. Read papers from `docs/references.bib`; for each, drop a per-paper CSV/Excel
-   in `data/raw/<paper_id>/` (raw files not tracked by git)
+1. **For each paper**:
+   - Copy `data/raw/_template.csv` → `data/raw/<paper_id>/data.csv`
+   - Read column meanings in [`docs/SCHEMA.md`](docs/SCHEMA.md) — each column shows
+     priority (M / R / O), unit, and where to find it in a typical paper
+   - Add one row per (catalyst, condition) pair the paper reports
+   - Raw files are not tracked by git; the template is
 2. `python -m thermo_co2.ingest` → merges `data/raw/` into `data/processed/db.csv`
 3. `python -m thermo_co2.features` → applies task split from
    `sisso/<reaction>/tasks.yaml` and writes per-task SISSO inputs

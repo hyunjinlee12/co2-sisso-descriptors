@@ -8,6 +8,7 @@ __pycache__/
 # Data — raw literature & external DBs are not tracked
 data/raw/*
 !data/raw/.gitkeep
+!data/raw/_template.csv
 data/external/*
 !data/external/.gitkeep
 
