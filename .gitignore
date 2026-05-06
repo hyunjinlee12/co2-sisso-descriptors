@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.ipynb_checkpoints/
+
+# Data — raw literature & external DBs are not tracked
+data/raw/*
+!data/raw/.gitkeep
+data/external/*
+!data/external/.gitkeep
+
+# SISSO heavy outputs (regenerable)
+sisso/**/SISSO.out
+sisso/**/feature_space/
+sisso/**/models/
+sisso/**/desc_dat/
+sisso/**/residual/
+sisso/**/predict_Y.out
+
+# Figures regenerated from scripts
+results/figures/*
+!results/figures/.gitkeep
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
